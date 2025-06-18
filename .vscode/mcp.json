@@ -1,9 +1,10 @@
 {
   "servers": {
-    "playwright-mcp-server": {
-      "type": "stdio",
-      "command": "node",
-      "args": ["${workspaceFolder}/build/index.js"]
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest"
+      ]
     }
   }
 }

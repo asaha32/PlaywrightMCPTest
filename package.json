@@ -8,7 +8,8 @@
   },
   "scripts": {
     "build": "tsc && chmod 755 build/index.js",
-    "start": "node build/index.js"
+    "start": "node build/index.js",
+    "test": "playwright test"
   },
   "files": [
     "build"
@@ -19,6 +20,9 @@
   "description": "",
   "devDependencies": {
     "@playwright/test": "^1.53.0",
+    "@types/node": "^24.0.1",
+    "@zerostep/playwright": "^0.1.5",
+    "axe-playwright": "^2.1.0",
     "typescript": "^5.8.3"
   },
   "dependencies": {

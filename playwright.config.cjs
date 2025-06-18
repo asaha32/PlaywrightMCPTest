@@ -1,12 +1,15 @@
-// playwright.config.js
-// Playwright config for running tests
+// @ts-check
+const { defineConfig, devices } = require('@playwright/test');
+
 /** @type {import('@playwright/test').PlaywrightTestConfig} */
 const config = {
   use: {
-    baseURL: 'https://www.workday.com',
-    headless: true,
+    baseURL: 'https://workday.wd5.myworkdayjobs.com',
+    headless: false,  // Run in headed mode for debugging
     viewport: { width: 1280, height: 800 },
     ignoreHTTPSErrors: true,
+    actionTimeout: 15000,  // Increase action timeout
+    navigationTimeout: 30000,  // Increase navigation timeout
     launchOptions: {
       args: ['--disable-dev-shm-usage']
     },
@@ -17,12 +20,18 @@ const config = {
   },
   testDir: './tests',
   reporter: [['html'], ['list']],
-  timeout: 60000,
-  retries: 2,
+  timeout: 90000,  // Increase overall timeout
+  retries: 0,  // No retries as per requirements
   expect: {
-    timeout: 10000
+    timeout: 15000  // Increase expect timeout
   },
-  workers: 1 // Run tests sequentially for stability
+  workers: 1, // Run tests sequentially for stability
+  projects: [
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
+    }
+  ]
 };
 
 module.exports = config;
